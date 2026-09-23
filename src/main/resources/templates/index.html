@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/output.css" rel="stylesheet">
+    <title>Lino</title>
+</head>
+
+<body class="h-screen w-screen flex flex-col">
+    <header class="h-20 w-full shadow-lg/70 shadow-indigo-950 flex items-center justify-between pl-20 pr-20 rounded-b-3xl">
+        <a href="/home" class="flex flex-row items-center w-fit justify-center gap-3">
+            <img class="h-1/2 w-12" src="/images/lino.png" alt="Lino">
+            <h1 class="text-white text-3xl font-semibold pt-2 font-spartan">Lino</h1>
+        </a>
+        <div id="divButtons" class="text-white font-spartan pt-2 text-xl flex w-fit gap-9">
+        </div>
+    </header>
+    <main class="h-full w-full"></main>
+</body>
+<script>
+
+    const divButtons = document.querySelector("#divButtons");
+
+    const buttons = [
+        { name: "Criar", href: "/pagina" },
+        { name: "Listar", href: "/home" }
+    ];
+
+    buttons.forEach((buttons) => {
+        divButtons.innerHTML += `<a class="relative" href=${buttons.href}>${buttons.name}</a>`;
+    })
+
+</script>
+
+</html>
