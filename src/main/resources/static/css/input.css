@@ -6,15 +6,22 @@
     --font-spartan: "League Spartan", sans-seriff;
 }
 
+html {
+    scroll-behavior: smooth;
+    scrollbar-color: #19307a transparent;
+}
+
 header {
-    background: radial-gradient(circle,rgba(47, 47, 194, 1) 0%, rgba(18, 18, 29, 1) 20%);
+    background: radial-gradient(circle, rgba(47, 47, 194, 1) 0%, rgba(18, 18, 29, 1) 20%);
     background-size: 150vw 750vh;
     background-repeat: no-repeat;
-    background-position: -25vw 41% ;
+    background-position: -25vw 41%;
 }
 
 body {
-    background-color: rgb(9, 9, 14);
+    background-image: repeating-linear-gradient(to right, #050c1f, #050c1f 2px, transparent 2px, transparent);
+    background-size: 32px 32px;
+    background-color: #09090E;
 }
 
 #divButtons a::after {
@@ -32,6 +39,11 @@ body {
 }
 
 @keyframes hoverBorderButton {
-    from { width: 0 }
-    to { width: 100% }
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
 }

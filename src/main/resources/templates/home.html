@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/output.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <title>Lino</title>
+</head>
+<body class="h-screen flex flex-col">
+    
+    <header class="h-20 flex items-center p-3 pr-20 pl-20 justify-between rounded-b-3xl shadow-lg/70 shadow-indigo-950">
+
+        <a class="flex items-center gap-2 transition-all hover:scale-105 hover:rotate-2" href="/home">
+            <img class="h-12" src="/images/lino.png" alt="Lino">
+            <h1 class="text-white text-3xl font-semibold pt-2 font-spartan">Lino</h1>
+        </a>
+        <div id="divButtons" class="text-white font-spartan pt-2 text-xl flex gap-9">
+        </div>
+
+    </header>
+
+    <main class="flex-1 flex flex-col gap-10 p-15">
+
+        <div class="flex justify-between items-center">
+            
+            <div class="flex flex-col gap-3">
+        
+                <h2 class="text-sky-700 text-center border border-sky-700 rounded-full p-1.5 bg-[#150b3e]">Seus temas</h2>
+                <h1 class="text-5xl font-semibold font-spartan bg-linear-320 from-0% from-purple-500 to-80% to-blue-500 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(60,0,255,1)]">Temas</h1>
+            
+            </div>
+            
+            <form class="relative">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6049bc" class="absolute left-4 self-center bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
+                <input class="text-white w-70 outline-none border-2 p-3 pl-9 rounded-full border-[#332470] bg-[#1d1638]" type="text">
+            </form>
+
+        </div>
+
+        <div class="flex-1 flex items-center">
+            
+            <img class="h-80 mx-auto" draggable="false" src="/images/not-found.png" alt="Não encontrado!">
+
+        </div>
+
+    </main>
+
+    <script src="/js/index.js"></script>
+    
+</body>
+</html>
