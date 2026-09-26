@@ -4,6 +4,7 @@
 
 @theme {
     --font-spartan: "League Spartan", sans-seriff;
+    --animate-openModal: openModal .5s forwards;
 }
 
 html {
@@ -45,5 +46,14 @@ body {
 
     to {
         width: 100%
+    }
+}
+
+@keyframes openModal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }

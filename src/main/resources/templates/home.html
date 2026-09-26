@@ -8,15 +8,34 @@
     <title>Lino</title>
 </head>
 <body class="h-screen flex flex-col">
+
+    <div id="themeModal" class="animate-openModal z-2 backdrop-blur-sm fixed h-full w-full hidden items-center justify-center">
+        
+        <form th:action="@{/tema}" method="post" id="preventThemeModal" class="h-150 saturate-70 relative">
+            
+            <button class="absolute bottom-40 -right-8 transition-all hover:scale-105 saturate-60 hover:hue-rotate-20" type="submit">
+                <img class="h-20 cursor-pointer select-none" draggable="false" src="/images/createTheme.png" alt="Criar Tema">
+            </button>
+
+            <input name="nameTheme" class="absolute outline-none p-1 text-white rounded-lg top-70 left-30 w-55" placeholder="Nome do Tema:" type="text">
+            
+            <img class="h-full select-none" src="/images/theme.png" draggable="false" alt="Tema">
+        
+        </form>
+
+    </div>
     
     <header class="h-20 flex items-center p-3 pr-20 pl-20 justify-between rounded-b-3xl shadow-lg/70 shadow-indigo-950">
 
         <a class="flex items-center gap-2 transition-all hover:scale-105 hover:rotate-2" href="/home">
+            
             <img class="h-12" src="/images/lino.png" alt="Lino">
+            
             <h1 class="text-white text-3xl font-semibold pt-2 font-spartan">Lino</h1>
+        
         </a>
-        <div id="divButtons" class="text-white font-spartan pt-2 text-xl flex gap-9">
-        </div>
+        
+        <div id="divButtons" class="text-white font-spartan pt-2 text-xl flex gap-9"></div>
 
     </header>
 
@@ -40,15 +59,22 @@
 
         </div>
 
-        <div class="flex-1 flex items-center">
+        <div class="flex-1 flex flex-wrap items-center justify-center gap-10">
             
-            <img class="h-80 mx-auto" draggable="false" src="/images/not-found.png" alt="Não encontrado!">
+            <a th:each="theme : ${themes}" class="flex justify-center items-center transition-all hover:scale-105 hover:hue-rotate-30" href="">
+                <h1 th:text="${theme.nameTheme}" class="absolute w-50 text-center truncate font-spartan text-2xl text-white z-1"></h1>
+                <img class="w-67 saturate-60" draggable="false" src="/images/listTheme.png" alt="Tema">
+            </a>
+
+            <img th:if="${themes.isEmpty}" class="h-70" src="/images/not-found.png" alt="Nada encontrado!">
 
         </div>
 
     </main>
 
-    <script src="/js/index.js"></script>
+    <div class="fixed inset-0 pointer-events-none shadow-[inset_0_-120px_120px_-30px_rgba(0,0,0,0.8)]"></div>
+
+    <script src="/js/home.js"></script>
     
 </body>
 </html>
