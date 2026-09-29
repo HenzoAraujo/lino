@@ -24,6 +24,11 @@ body {
     background-size: 32px 32px;
     background-color: #09090E;
 }
+.formNote {
+    background: radial-gradient(circle, rgba(47, 47, 194, 1) 0%, rgba(18, 18, 29, 1) 20%);
+    background-size: 150vh 750vh;
+    background-position: -25vw 41%;
+}
 
 #divButtons a::after {
     content: "";

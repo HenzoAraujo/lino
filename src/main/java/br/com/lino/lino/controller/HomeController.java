@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.lino.lino.entity.Theme;
 import br.com.lino.lino.service.ThemeService;
@@ -19,8 +20,8 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String home(Model model) {
-        List<Theme> theme = themeService.listTheme();
+    public String home(Model model, @RequestParam(required = false) String search) {
+        List<Theme> theme = themeService.listTheme(search);
         model.addAttribute("themes", theme);
         return "home.html";
     }

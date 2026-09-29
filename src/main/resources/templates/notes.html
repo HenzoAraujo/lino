@@ -8,23 +8,25 @@
     <title>Lino</title>
 </head>
 <body class="h-screen flex flex-col">
-
+    
     <div id="modal" class="animate-openModal z-2 backdrop-blur-sm fixed h-full w-full hidden items-center justify-center">
         
-        <form th:action="@{/tema}" method="post" id="preventModal" class="h-150 saturate-70 relative">
+        <form th:action="@{/tema/{idTheme}/nota(idTheme=${idTheme})}" method="post" id="preventModal" class="h-150 saturate-70 relative">
             
-            <button class="absolute bottom-40 -right-8 transition-all hover:scale-105 saturate-60 hover:hue-rotate-20" type="submit">
+            <button class="absolute bottom-8 -right-8 transition-all hover:scale-105 saturate-60 hover:hue-rotate-20" type="submit">
                 <img class="h-20 cursor-pointer select-none" draggable="false" src="/images/createTheme.png" alt="Criar Tema">
             </button>
 
-            <input name="nameTheme" class="absolute outline-none p-1 text-white rounded-lg top-70 left-30 w-55" placeholder="Nome do Tema:" type="text">
-            
-            <img class="h-full select-none" src="/images/theme.png" draggable="false" alt="Tema">
+            <input name="nameNote" class="absolute outline-none p-1 text-white rounded-lg top-38 left-23 w-75.5" placeholder="Nome da Anotação:" type="text">
+            <textarea cols="30" rows="10" name="descNote" class="absolute outline-none p-1 text-white rounded-lg top-54 left-23 w-75.5 resize-none" placeholder="Anotação:" type="text"></textarea>
+            <input th:value="${idTheme}" hidden type="text">
+
+            <img class="h-full select-none" src="/images/note.png" draggable="false" alt="Tema">
         
         </form>
 
     </div>
-    
+
     <header class="h-20 flex items-center p-3 pr-20 pl-20 justify-between rounded-b-3xl shadow-lg/70 shadow-indigo-950">
 
         <a class="flex items-center gap-2 transition-all hover:scale-105 hover:rotate-2" href="/home">
@@ -45,12 +47,12 @@
             
             <div class="flex flex-col gap-3">
         
-                <h2 class="text-sky-700 text-center border border-sky-700 rounded-full p-1.5 bg-[#150b3e]">Seus temas</h2>
-                <h1 class="text-5xl font-semibold font-spartan bg-linear-320 from-0% from-purple-500 to-80% to-blue-500 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(60,0,255,1)]">Temas</h1>
+                <h2 class="text-sky-700 text-center border border-sky-700 rounded-full p-1.5 bg-[#150b3e]">Suas anotações de Tema</h2>
+                <h1 class="text-5xl font-semibold font-spartan bg-linear-320 from-0% from-purple-500 to-80% to-blue-500 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(60,0,255,1)]">Anotações</h1>
             
             </div>
             
-            <form th:action="@{/home}" method="get" class="relative">
+            <form th:action="@{/tema/{idTheme}(idTheme=${idTheme})}" method="get" class="relative">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6049bc" class="absolute left-4 self-center bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                 </svg>
@@ -61,12 +63,12 @@
 
         <div class="flex-1 flex flex-wrap items-center justify-center gap-10">
             
-            <a th:each="theme : ${themes}" class="flex justify-center items-center transition-all hover:scale-105 hover:hue-rotate-30" th:href="@{/tema/{idTheme}(idTheme=${theme.idTheme})}">
-                <h1 th:text="${theme.nameTheme}" class="absolute w-50 text-center truncate font-spartan text-2xl text-white z-1"></h1>
+            <a th:each="note : ${notes}" class="flex justify-center items-center transition-all hover:scale-105 hover:hue-rotate-30" href="">
+                <h1 th:text="${note.nameNote}" class="absolute w-50 text-center truncate font-spartan text-2xl text-white z-1"></h1>
                 <img class="w-67 saturate-60" draggable="false" src="/images/listTheme.png" alt="Tema">
             </a>
 
-            <img th:if="${themes.isEmpty()}" draggable="false" class="h-70" src="/images/not-found.png" alt="Nada encontrado!">
+            <img th:if="${notes.isEmpty()}" draggable="false" class="h-70" src="/images/not-found.png" alt="Nada encontrado!">
 
         </div>
 
@@ -75,6 +77,6 @@
     <div class="fixed inset-0 pointer-events-none shadow-[inset_0_-120px_120px_-30px_rgba(0,0,0,0.8)]"></div>
 
     <script src="/js/home.js"></script>
-    
+
 </body>
 </html>

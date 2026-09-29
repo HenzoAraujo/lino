@@ -1,32 +1,37 @@
 const divButtons = document.querySelector("#divButtons");
 
 const buttons = [
-    { id: "openThemeModal", name: "Criar" },
-    { name: "Listar", href: "/home" }
+    { id: "openModal", name: "Criar" },
 ];
 
+if(window.location.pathname != "/home"){
+    buttons.push({
+            name: "Voltar", href: "href='/home'" 
+    })
+}
+
 buttons.forEach((buttons) => {
-    divButtons.innerHTML += `<a id=${buttons.id} class="relative cursor-pointer">${buttons.name}</a>`;
+    divButtons.innerHTML += `<a id=${buttons.id} ${buttons.href} class="relative cursor-pointer">${buttons.name}</a>`;
 })
 
-const themeModal = document.querySelector("#themeModal");
-const openThemeModal = document.querySelector("#openThemeModal");
-const preventThemeModal = document.querySelector("#preventThemeModal")
+const modal = document.querySelector("#modal");
+const openModal = document.querySelector("#openModal");
+const preventModal = document.querySelector("#preventModal")
 
-openThemeModal.addEventListener("click", () => {
-    themeModal.classList.add("flex");
-    themeModal.classList.remove("hidden");
+openModal.addEventListener("click", () => {
+    modal.classList.add("flex");
+    modal.classList.remove("hidden");
 })
-themeModal.addEventListener("click", () => {
-    themeModal.classList.add("hidden");
-    themeModal.classList.remove("flex");
+modal.addEventListener("click", () => {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
 })
-preventThemeModal.addEventListener("click", (e) => {
+preventModal.addEventListener("click", (e) => {
     e.stopPropagation();
 })
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-        themeModal.classList.add("hidden");
-        themeModal.classList.remove("flex");
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
     }
 })

@@ -24,8 +24,11 @@ public class ThemeService {
         themeRepository.delete(theme);
     }
 
-    public List<Theme> listTheme(){
-        return themeRepository.findAll();
+    public List<Theme> listTheme(String search){
+        if (search == null) {
+            return themeRepository.findAll();
+        }
+        return themeRepository.findByNameThemeContainingIgnoreCase(search);
     }
 
     public void loadTheme(Long idTheme){
