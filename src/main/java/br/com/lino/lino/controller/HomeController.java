@@ -23,7 +23,7 @@ public class HomeController {
     public String home(Model model, @RequestParam(required = false) String search) {
         List<Theme> theme = themeService.listTheme(search);
         model.addAttribute("themes", theme);
-        return "home.html";
+        return "index.html";
     }
 
 }
