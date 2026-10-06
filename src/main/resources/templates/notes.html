@@ -17,10 +17,9 @@
                 <img class="h-20 cursor-pointer select-none" draggable="false" src="/images/createTheme.png" alt="Criar Tema">
             </button>
 
-            <input name="nameNote" class="absolute outline-none p-1 text-white rounded-lg top-38 left-23 w-75.5" placeholder="Nome da Anotação:" type="text">
+            <input name="nameNote" autocomplete="off" class="absolute outline-none p-1 text-white rounded-lg top-38 left-23 w-75.5" placeholder="Nome da Anotação:" type="text">
             <textarea cols="30" rows="10" name="descNote" class="absolute outline-none p-1 text-white rounded-lg top-54 left-23 w-75.5 resize-none" placeholder="Anotação:" type="text"></textarea>
-            <input th:value="${idTheme}" hidden type="text">
-
+            
             <img class="h-full select-none" src="/images/note.png" draggable="false" alt="Tema">
         
         </form>
@@ -37,7 +36,13 @@
         
         </a>
         
-        <div id="divButtons" class="text-white font-spartan pt-2 text-xl flex gap-9"></div>
+        <div id="divButtons" class="text-white font-spartan pt-2 text-xl flex gap-9">
+
+            <a id="openModal" class="relative cursor-pointer">Criar</a>
+
+            <a href="/home" class="relative cursor-pointer">Voltar</a>
+
+        </div>
 
     </header>
 
@@ -47,7 +52,7 @@
             
             <div class="flex flex-col gap-3">
         
-                <h2 class="text-sky-700 text-center border border-sky-700 rounded-full p-1.5 bg-[#150b3e]">Suas anotações de Tema</h2>
+                <h2 th:text="|Suas anotações de ${theme.nameTheme}|" class="text-sky-700 text-center border border-sky-700 rounded-full p-1.5 pr-3 pl-3 bg-[#150b3e]"></h2>
                 <h1 class="text-5xl font-semibold font-spartan bg-linear-320 from-0% from-purple-500 to-80% to-blue-500 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(60,0,255,1)]">Anotações</h1>
             
             </div>
@@ -56,14 +61,19 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6049bc" class="absolute left-4 self-center bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                 </svg>
-                <input name="search" class="text-white w-70 outline-none border-2 p-3 pl-9 rounded-full border-[#332470] bg-[#1d1638]" type="text">
+                <input name="search" autocomplete="off" placeholder="Pesquisar..." class="text-white w-70 outline-none border-2 p-3 pl-9 rounded-full border-[#332470] bg-[#1d1638]" type="text">
             </form>
 
         </div>
 
         <div class="flex-1 flex flex-wrap items-center justify-center gap-10">
             
-            <a th:each="note : ${notes}" class="flex justify-center items-center transition-all hover:scale-105 hover:hue-rotate-30" href="">
+            <a th:each="note : ${notes}" class="group relative flex justify-center items-center transition-all hover:scale-105 hover:hue-rotate-30" th:href="@{/tema/{idTheme}/nota/{idNote}(idTheme=${idTheme}, idNote=${note.idNote})}">
+                <form th:action="@{/tema/{idTheme}/nota/{idNote}/excluir(idTheme=${idTheme}, idNote=${note.idNote})}" method="post">
+                    <button type="submit" class="cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2b1877" class="group-hover:block hidden absolute z-2 top-3 -right-2 bi bi-x-circle-fill" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/></svg>
+                    </button>
+                </form>
                 <h1 th:text="${note.nameNote}" class="absolute w-50 text-center truncate font-spartan text-2xl text-white z-1"></h1>
                 <img class="w-67 saturate-60" draggable="false" src="/images/listTheme.png" alt="Tema">
             </a>

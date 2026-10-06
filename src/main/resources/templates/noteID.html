@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/output.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <title>Lino</title>
+</head>
+<body class="h-screen flex flex-col">
+    
+    <header class="h-20 flex items-center p-3 pr-20 pl-20 justify-between rounded-b-3xl shadow-lg/70 shadow-indigo-950">
+
+        <a class="flex items-center gap-2 transition-all hover:scale-105 hover:rotate-2" href="/home">
+            
+            <img class="h-12" src="/images/lino.png" alt="Lino">
+            
+            <h1 class="text-white text-3xl font-semibold pt-2 font-spartan">Lino</h1>
+        
+        </a>
+        
+        <div id="divButtons" class="text-white font-spartan pt-2 text-xl flex gap-9">
+            
+            <a th:href="@{/tema/{idTheme}(idTheme=${idTheme})}" class="relative cursor-pointer">Voltar</a>
+
+        </div>
+
+    </header>
+
+    <main class="flex-1 flex justify-between gap-10 p-10">
+
+        <div class="bg-linear-220 from-70% from-[#170f36] to-200% to-blue-400 h-full flex-1 rounded-2xl p-5 flex flex-col gap-5">
+            <p class="text-white font-spartan text-3xl border-b border-blue-900" th:text="${note.nameNote}"></p>
+            <p class="text-blue-400 whitespace-break-spaces" th:text="${note.descNote}"></p>
+        </div>
+
+        <div class="bg-linear-120 from-70% from-[#170f36] to-200% to-blue-400 h-full w-70 rounded-2xl p-5 flex flex-col gap-4">
+            <p class="font-bold text-blue-400 pb-3 border-b border-blue-900" th:text="${note.theme.nameTheme}"></p>
+            <p class="text-blue-400" th:text="'Criado em: ' + ${#dates.format(note.dateNote, 'dd/MM/yyyy')}"></p>
+        </div>
+
+    </main>
+
+    <div class="fixed inset-0 pointer-events-none shadow-[inset_0_-80px_80px_-40px_rgba(0,0,0,0.8)]"></div>
+
+    <script src="/js/home.js"></script>
+    
+</body>
+</html>

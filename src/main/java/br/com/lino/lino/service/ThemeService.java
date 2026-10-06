@@ -20,8 +20,8 @@ public class ThemeService {
         return themeRepository.save(theme);
     }
 
-    public void deleteTheme(Theme theme){
-        themeRepository.delete(theme);
+    public void deleteTheme(Long idTheme){
+        themeRepository.deleteById(idTheme);
     }
 
     public List<Theme> listTheme(String search){
@@ -31,8 +31,8 @@ public class ThemeService {
         return themeRepository.findByNameThemeContainingIgnoreCase(search);
     }
 
-    public void loadTheme(Long idTheme){
-        themeRepository.findById(idTheme);
+    public Theme loadTheme(Long idTheme){
+        return themeRepository.findById(idTheme).orElse(null);
     }
 
 }

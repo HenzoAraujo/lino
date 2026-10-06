@@ -34,4 +34,12 @@ public class NoteService {
         return noteRepository.findAllByTheme_IdThemeAndNameNoteContainingIgnoreCase(idTheme, search);
     }
 
+    public Note loadNote(Long idNote){
+        return noteRepository.findById(idNote).orElse(null);
+    }
+
+    public void deleteNote(Long idNote){
+        noteRepository.deleteById(idNote);
+    }
+
 }

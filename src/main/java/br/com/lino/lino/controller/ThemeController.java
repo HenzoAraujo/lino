@@ -2,6 +2,7 @@ package br.com.lino.lino.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.lino.lino.entity.Theme;
@@ -19,6 +20,12 @@ public class ThemeController {
     @PostMapping("/tema")
     public String createTheme(@ModelAttribute Theme theme) {
         themeService.createTheme(theme);
+        return "redirect:/home";
+    }
+
+    @PostMapping("/tema/{idTheme}/excluir") 
+    public String deleteTheme(@PathVariable Long idTheme) {
+        themeService.deleteTheme(idTheme);
         return "redirect:/home";
     }
 }

@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 
 @Entity 
 public class Note {
@@ -26,7 +27,6 @@ public class Note {
 
     @ManyToOne
     private Theme theme;
-
 
     public Long getIdNote() {
         return idNote;
@@ -56,8 +56,13 @@ public class Note {
         return dateNote;
     }
 
-    public void setDateNote(Date dateNote) {
-        this.dateNote = dateNote;
+    public void setDateNote(Date datenote) {
+        this.dateNote = datenote;
+    }
+
+    @PrePersist 
+    public void dateNote() {
+        dateNote = new Date(System.currentTimeMillis());
     }
 
      public Theme getTheme() {
@@ -74,7 +79,5 @@ public class Note {
 
     public Note(String descNote){
         this.descNote = descNote;
-        this.dateNote = new Date(System.currentTimeMillis());
     }
-
 }
